@@ -22,3 +22,13 @@ class MyHomePage extends StatefulWidget {
 
 }
 
+// this is for bakas like me ///////////////////////////
+// 0%   251B1B
+// 50%  470707
+// 100% 000000
+
+class NavigationBar extends StatelessWidget {}
+class ChatbotPage extends StatelessWidget {}
+class ViewPostPage extends StatelessWidget {}
+class NewPostPage extends StatelessWidget {}
+class UserPage extends StatelessWidget {}
