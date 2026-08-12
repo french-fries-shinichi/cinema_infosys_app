@@ -33,7 +33,7 @@ class MyHomePage extends StatelessWidget {
             Color(0xFF470707),
             Color(0xFF000000)
           ],
-          stops: <double>[0.5],
+          stops: <double>[0.0, 0.5, 1.0],
           tileMode: TileMode.clamp,
         ),
       ),
