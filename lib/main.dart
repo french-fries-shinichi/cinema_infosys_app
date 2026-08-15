@@ -1,65 +1,86 @@
+import 'ReviewScreen.dart';
+import 'homepage.dart';
+import 'profilepage.dart';
+import 'Aichatbot.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+// ignore: must_be_immutable
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // this to track of the current page to display
+  int _selectedIndex = 0;
+
+  void _navigateBottomBar(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  // pages for TGV
+  final List<Widget> _pages = [
+    // homepage
+    const Homepage(),
+
+    // review page
+    const ReviewScreen(),
+
+    // Ai Chatbot
+    const Aichatbot(),
+
+    // Profile page
+    const ProfilePage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
+      home: Scaffold(
+        body: _pages[_selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          onTap: _navigateBottomBar,
+          items: const [
+            // Home
+            BottomNavigationBarItem(
+              backgroundColor: Colors.black,
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
+            // User Reviews
+            BottomNavigationBarItem(
+              backgroundColor: Colors.black,
+              icon: Icon(Icons.reviews),
+              label: 'Reviews',
+            ),
 
-  final String title;
+            // AI Chatbot
+            BottomNavigationBarItem(
+              backgroundColor: Colors.black,
+              icon: Icon(Icons.chat_bubble),
+              label: 'Ai Chatbot',
+            ),
 
-  @override Widget build(BuildContext context) {
-    return const DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: <Color>[
-            Color(0xFF251B1B),
-            Color(0xFF470707),
-            Color(0xFF000000)
+            // Profile
+            BottomNavigationBarItem(
+              backgroundColor: Colors.black,
+              icon: Icon(Icons.person),
+              label: 'Profile',
+            ),
           ],
-          stops: <double>[0.0, 0.5, 1.0],
-          tileMode: TileMode.clamp,
         ),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
-
-// this is standard values for bakas like me ///////////////////////////
-//    Gradient:
-// 0%   251B1B
-// 50%  470707
-// 100% 000000
-//
-//    Screen Resolution:
-// W 375 | H 812
-
-// class NavigationBar extends StatelessWidget {
-//   const NavigationBar({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     // TODO: implement build
-//     return x;
-//   }
-// }
-// class ChatbotPage extends StatelessWidget {}
-// class ViewPostPage extends StatelessWidget {}
-// class NewPostPage extends StatelessWidget {}
-// class UserPage extends StatelessWidget {}
